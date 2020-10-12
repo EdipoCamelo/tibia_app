@@ -3,8 +3,8 @@ import { View } from 'react-native';
 
 // import { Container } from './styles';
 
-const Members: React.FC = () => {
+const Settings: React.FC = () => {
     return <View />;
 }
 
-export default Members;
+export default Settings;
