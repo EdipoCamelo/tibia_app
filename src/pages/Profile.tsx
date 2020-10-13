@@ -4,21 +4,30 @@ import { Icon, Card, Button, Block } from 'galio-framework';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useTheme } from '@react-navigation/native';
-
-// import { Container } from './styles';
+import { Header } from 'react-native-elements'
 
 const Profile = ({ navigation }) => {
 
-    // const { colors } = useTheme();
+    const { colors } = useTheme();
 
-    // const theme = useTheme();
-    // <StatusBar barStyle={theme.dark ? "light-content" : "dark-content"} />
+    const theme = useTheme();
+
 
     return (
         <View style={styles.container}>
+            <Header
+                backgroundColor='#6b6b6b'
+                centerComponent={{ text: 'PROFILE', style: { color: '#fff' } }}
+                rightComponent={{
+                    icon: 'home',
+                    color: '#fff',
+                    onPress: () => navigation.navigate("Home"),
+                }}
+            />
 
+            <StatusBar barStyle={theme.dark ? "light-content" : "dark-content"} />
 
-            <LinearGradient style={styles.gradient} colors={['#e8e8e8', '#bababa',]}>
+            <LinearGradient style={styles.gradient} colors={['#fff', '#fff',]}>
                 {/*<Card style={styles.cardUser}></Card>*/}
                 <View>
                     <Image source={require('../assets/Images/avatar3.png')}
@@ -129,7 +138,7 @@ const Profile = ({ navigation }) => {
                         shadowless
                         color='#ff1212'
                         style={styles.friends}
-                        onPress={() => this.props.navigation.navigate('Home')}>
+                        onPress={() => navigation.navigate('Home')}>
                         Add Friend</Button>
                 </View>
 
