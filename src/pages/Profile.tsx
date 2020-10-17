@@ -4,7 +4,7 @@ import { Icon, Card, Button, Block } from 'galio-framework';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useTheme } from '@react-navigation/native';
-import { Header } from 'react-native-elements'
+import { Header } from 'react-native-elements';
 
 const Profile = ({ navigation }) => {
 
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
     },
     imageSS: {
         alignSelf: 'center',
-        marginTop: '20%',
+        marginTop: '10%',
         marginBottom: '5%',
         // height:'50%',
         // width:'25%',
