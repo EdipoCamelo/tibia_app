@@ -112,6 +112,8 @@ const SignIn = ({ navigation }) => {
         SignIn(foundUser);
     }
 
+
+
     return (
         <View style={styles.container}>
             <StatusBar backgroundColor='#009387' barStyle="light-content" />

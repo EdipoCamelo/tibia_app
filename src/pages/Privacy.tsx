@@ -1,8 +1,7 @@
-import React from 'react';
-import { View, Button, StyleSheet, StatusBar } from 'react-native';
+import React, { useState } from "react";
+import { View, StyleSheet, StatusBar } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { Header, Text } from 'react-native-elements';
-import { Checkbox } from 'react-native-paper';
 
 
 const Privacy = ({ navigation }) => {
@@ -11,34 +10,22 @@ const Privacy = ({ navigation }) => {
 
     const theme = useTheme();
 
-    const [checked, setChecked] = React.useState(false);
-
 
     return (
+
 
         <View style={styles.container}>
             <StatusBar barStyle={theme.dark ? "light-content" : "dark-content"} />
             <Header
                 backgroundColor='#6b6b6b'
-                centerComponent={{ text: 'PRIVACY', style: { color: '#fff' } }}
+                centerComponent={{ text: 'PRIVACY POLICY', style: { color: '#fff' } }}
                 rightComponent={{
                     icon: 'home',
                     color: '#fff',
                     onPress: () => navigation.navigate("Home"),
                 }}
             />
-
-            <Text style={{ color: '#6b6b6b', marginTop: '5%', marginLeft: '2%' }} h5>Leia o texto abaixo para entender como a Empresa XPTO irá utilizar seus dados.</Text>
-
-            <Checkbox
-                color='#000'
-                status={checked ? 'checked' : 'unchecked'}
-                onPress={() => {
-                    setChecked(!checked);
-                }}
-            />
-
-
+            <Text style={styles.title}>Terms and conditions</Text>
 
         </View>
     );
@@ -51,6 +38,21 @@ const styles = StyleSheet.create({
         flex: 1,
         // alignItems: 'center',
         // justifyContent: 'center'
+    },
+    checkboxContainer: {
+        flexDirection: "row",
+        marginBottom: 20,
+    },
+    checkbox: {
+        alignSelf: "center",
+    },
+    label: {
+        marginTop: 20,
+
+    },
+    title: {
+        fontSize: 22,
+        alignSelf: 'center'
     },
 
 
