@@ -15,12 +15,12 @@ import {
 
 import { DrawerContent } from '../pages/DrawerContent';
 
-import Home from '../pages/Home';
-import Profile from '../pages/Profile';
-import Games from '../pages/Games';
-import Privacy from '../pages/Privacy';
-import Settings from '../pages/Settings';
-import Contact from '../pages/Contact';
+import Home from '../pages/Home/Home';
+import Profile from '../pages/Profile/Profile';
+import Games from '../pages/Games/Games';
+import Privacy from '../pages/Privacy/Privacy';
+import Settings from '../pages/Settings/Settings';
+import Contact from '../pages/Contact/Contact';
 
 
 import { AuthContext } from '../components/context';
