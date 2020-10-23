@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { View, Text, Image, StatusBar } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -29,7 +30,7 @@ const Profile = ({ navigation }) => {
         {/* <Card style={styles.cardUser}></Card> */}
         <View>
           <Image
-            source={require('../assets/Images/avatar3.png')}
+            source={require('../../assets/Images/avatar3.png')}
             style={styles.imageSS}
           />
         </View>
