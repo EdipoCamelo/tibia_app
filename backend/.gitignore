@@ -1,2 +1,5 @@
 # Dependency directories
 node_modules
+
+# Others directories
+./src/config/config.json

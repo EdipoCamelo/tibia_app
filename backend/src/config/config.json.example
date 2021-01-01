@@ -1,0 +1,20 @@
+
+"database": {
+        "host": "localhost",
+        "port": 3306,
+        "user": "user",
+        "password": "password",
+        "database": "database"
+  },
+
+  "secret": "any secret-token",
+  "emailFrom": "test@test.com",
+  "smtpOptions": {
+    "host": "",
+    "port": 587,
+    "auth": {
+      "user": "",
+      "pass": ""
+    }
+  }
+}
