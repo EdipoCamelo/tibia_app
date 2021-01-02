@@ -1,18 +1,67 @@
+import express from 'express'
+import bodyParser from 'body-parser'
+import cors from 'cors'
+import db from './src/models'
 
-import express from 'express';
+
 const app = express();
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import cors from 'cors';
 
-app.use(bodyParser.urlencoded({ extended: false }));
+var corsOptions = {
+    origin: "http://localhost:8081"
+};
+
+app.use(cors(corsOptions));
+
+// parse requests of content-type - application/json
 app.use(bodyParser.json());
-app.use(cookieParser());
 
-// allow cors requests from any origin and with credentials
-app.use(cors({ origin: (origin, callback) => callback(null, true), credentials: true }));
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
 
+// database
+// const db = require("./src/models/index.js");
+const Role = db.role;
 
-// start server
-const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 3000;
-app.listen(port, () => console.log('Server listening on port ' + port));
+db.sequelize.sync();
+// force: true will drop the table if it already exists
+// db.sequelize.sync({force: true}).then(() => {
+//   console.log('Drop and Resync Database with { force: true }');
+//   initial();
+// });
+
+// simple route
+app.get("/", (req, res) => {
+    res.json({ message: "Welcome App Test." });
+});
+
+// routes
+require('./src/routes/auth.routes')(app);
+require('./src/routes/user.routes')(app);
+
+// set port, listen for requests
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
+});
+
+function initial() {
+    Role.create({
+        id: 1,
+        name: "user"
+    });
+
+    Role.create({
+        id: 2,
+        name: "moderator"
+    });
+
+    Role.create({
+        id: 3,
+        name: "admin"
+    });
+
+    Role.create({
+        id: 4,
+        name: "member"
+    });
+}
