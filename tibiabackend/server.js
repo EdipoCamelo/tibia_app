@@ -1,28 +1,64 @@
-// require('rootpath')();
+
 import express from 'express'
 import bodyParser from 'body-parser'
-import cookieParser from 'cookie-parser'
 import cors from 'cors'
-import errorHandler from './src/middlewares/error-handler'
 
+import db from './src/models/index.js'
 
 const app = express();
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
+const corsOptions = {
+    origin: "http://localhost:8081"
+};
+
+app.use(cors(corsOptions));
+
+// parse requests of content-type - application/json
 app.use(bodyParser.json());
-app.use(cookieParser());
 
-// allow cors requests from any origin and with credentials
-app.use(cors({ origin: (origin, callback) => callback(null, true), credentials: true }));
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// api routes
-// app.use('/accounts', require('./accounts/accounts.controller'));
+// database
+// const db = require("./src/models");
+const Role = db.role;
 
+db.sequelize.sync();
+// force: true will drop the table if it already exists
+// db.sequelize.sync({force: true}).then(() => {
+//   console.log('Drop and Resync Database with { force: true }');
+//   initial();
+// });
 
-// global error handler
-app.use(errorHandler);
+// simple route
+app.get("/", (req, res) => {
+    res.json({ message: "Welcome to Tíbia APP." });
+});
 
-// start server
-const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
-app.listen(port, () => console.log('Server listening on port ' + port));
+// routes
+require('./src/routes/auth.routes')(app);
+require('./src/routes/user.routes')(app);
+
+// set port, listen for requests
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
+});
+
+function initial() {
+    Role.create({
+        id: 1,
+        name: "user"
+    });
+
+    Role.create({
+        id: 2,
+        name: "moderator"
+    });
+
+    Role.create({
+        id: 3,
+        name: "admin"
+    });
+}
